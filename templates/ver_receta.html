@@ -1,0 +1,36 @@
+<!-- templates/ver_receta.html -->
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Detalles de la Receta</title>
+</head>
+<body>
+    <h1>Detalles de la Receta</h1>
+    <p><strong>DNI del Paciente:</strong> {{ receta.dni_paciente }}</p>
+    <p><strong>Nombre y Apellido:</strong> {{ receta.nombre_apellido }}</p>
+    <p><strong>Justificación:</strong> {{ receta.justificacion }}</p>
+    <p><strong>Nombre Genérico:</strong> {{ receta.nombre_generico }}</p>
+    <p><strong>Nombre Comercial:</strong> {{ receta.nombre_comercial }}</p>
+    <p><strong>Indicaciones:</strong> {{ receta.indicaciones }}</p>
+    <a href="{{ url_for('home.medico_dashboard') }}">Volver al Dashboard</a>
+</body>
+</html>
+<!-- paciente_dashboard.html -->
+{% if receta %}
+    <h2>Receta para DNI: {{ receta.dni_paciente }}</h2>
+    <p>Fecha de emisión: {{ receta.fecha_emision }}</p>
+    
+    {% if medicamentos %}
+        <h3>Medicamentos:</h3>
+        <ul>
+        {% for medicamento in medicamentos %}
+            <li>{{ medicamento.nombre }} - Dosis: {{ medicamento.dosis }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay medicamentos asociados a esta receta.</p>
+    {% endif %}
+{% else %}
+    <p>No se encontró ninguna receta.</p>
+{% endif %}

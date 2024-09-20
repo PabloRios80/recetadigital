@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Entrega</title>
+</head>
+<body>
+    <h1>Confirmación de Entrega de Receta</h1>
+
+    <h2>Receta del Paciente</h2>
+    <p><strong>Nombre y Apellido:</strong> {{ receta.nombre_apellido }}</p>
+    <p><strong>Justificación Clínica:</strong> {{ receta.justificacion }}</p>
+    <p><strong>Nombre Genérico del Medicamento:</strong> {{ receta.nombre_generico }}</p>
+    <p><strong>Nombre Comercial:</strong> {{ receta.nombre_comercial }}</p>
+    <p><strong>Indicaciones:</strong> {{ receta.indicaciones }}</p>
+    <p><strong>PVP:</strong> {{ receta.pvp }}</p>
+    <p><strong>A cargo del Afiliado:</strong> {{ receta.cargo_afiliado }}</p>
+    <p><strong>A cargo de la Obra Social:</strong> {{ receta.cargo_obra_social }}</p>
+    <p><strong>Observaciones:</strong> {{ receta.observaciones }}</p>
+    <p><strong>Presentación:</strong> {{ receta.presentacion }}</p>
+    <p><strong>Cantidad de Envases:</strong> {{ receta.cantidad_envases }}</p>
+
+    <form method="POST" action="{{ url_for('home.registrar_entrega') }}">
+        <input type="hidden" name="receta_id" value="{{ receta.id }}">
+        <button type="submit">Registrar Entrega</button>
+    </form>
+    <a href="{{ url_for('home.gestionar_receta') }}">Volver al panel del farmacéutico</a>
+</body>
+</html>

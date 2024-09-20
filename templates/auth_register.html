@@ -1,0 +1,16 @@
+<form method="POST" action="{{ url_for('auth.register') }}">
+    <label for="username">Nombre de Usuario:</label>
+    <input type="text" name="username" required><br>
+
+    <label for="password">Contraseña:</label>
+    <input type="password" name="password" required><br>
+
+    <label for="role">Selecciona tu Rol:</label>
+    <select name="role">
+        <option value="medico">Médico</option>
+        <option value="farmaceutico">Farmacéutico</option>
+        <option value="paciente">Paciente</option>
+    </select><br>
+
+    <button type="submit">Registrar</button>
+</form>

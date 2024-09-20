@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel del Médico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f7fa;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .flashes {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .flashes li {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generar Receta</h1>
+    <form method="POST" action="{{ url_for('home.generar_receta') }}">
+
+        <label for="dni">DNI del Paciente:</label>
+        <input type="text" id="dni" name="dni" placeholder="DNI del Paciente" required>
+    
+        <label for="nombre_apellido">Nombre y Apellido del Paciente:</label>
+        <input type="text" id="nombre_apellido" name="nombre_apellido" placeholder="Nombre y Apellido del Paciente" required>
+    
+        <label for="justificacion">Justificación Clínica:</label>
+        <input type="text" id="justificacion" name="justificacion" placeholder="Justificación Clínica" required>
+    
+        <label for="nombre_generico">Nombre Genérico del Medicamento:</label>
+        <input type="text" id="nombre_generico" name="nombre_generico" placeholder="Nombre Genérico del Medicamento" required>
+    
+        <label for="nombre_comercial">Nombre Comercial (opcional):</label>
+        <input type="text" id="nombre_comercial" name="nombre_comercial" placeholder="Nombre Comercial (opcional)">
+    
+        <label for="indicaciones">Indicaciones:</label>
+        <textarea id="indicaciones" name="indicaciones" placeholder="Indicaciones"></textarea>
+    
+        <button type="submit">Generar Receta</button>
+    </form>
+
+    <button onclick="agregarMedicamento()">Agregar Medicamento a la Receta</button>
+
+    <script>
+        function agregarMedicamento() {
+            // Código para agregar un medicamento a la receta (interfaz o funcionalidad)
+            alert("Agregar nuevo medicamento a la receta.");
+        }
+    </script>
+    <h1>Agregar Medicamento a la Receta</h1>
+
+    <!-- Formulario para agregar un nuevo medicamento -->
+    <form method="POST" action="{{ url_for('home.agregar_medicamento') }}">
+        <label for="nombre_generico">Nombre Genérico:</label>
+        <input type="text" id="nombre_generico" name="nombre_generico" required>
+
+        <label for="nombre_comercial">Nombre Comercial (Opcional):</label>
+        <input type="text" id="nombre_comercial" name="nombre_comercial">
+
+        <label for="indicaciones">Indicaciones:</label>
+        <input type="text" id="indicaciones" name="indicaciones" required>
+
+        <button type="submit">Agregar Medicamento</button>
+    </form>
+
+    <!-- Sección para visualizar la receta existente -->
+    {% if receta %}
+        <h2>Receta Actual</h2>
+        <p><strong>Nombre y Apellido:</strong> {{ receta.nombre_apellido }}</p>
+        <p><strong>Justificación Clínica:</strong> {{ receta.justificacion }}</p>
+        <p><strong>Nombre Genérico del Medicamento:</strong> {{ receta.nombre_generico }}</p>
+        <p><strong>Nombre Comercial:</strong> {{ receta.nombre_comercial }}</p>
+        <p><strong>Indicaciones:</strong> {{ receta.indicaciones }}</p>
+    {% endif %}
+</body>
+</html>
+
+
+    <!-- Mostrar mensajes flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>

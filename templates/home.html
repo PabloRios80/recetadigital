@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Principal</title>
+</head>
+<body>
+    <h1>Bienvenido a la Página Principal</h1>
+    <a href="{{ url_for('auth.login') }}">Iniciar sesión</a>
+    <a href="{{ url_for('auth.register') }}">Registrarse</a>
+    <a href="{{ url_for('recipes.list') }}">Lista de Recetas</a>
+
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

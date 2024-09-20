@@ -1,0 +1,34 @@
+<!-- vista_previa_receta.html -->
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Vista Previa de la Receta</title>
+</head>
+<body>
+    <h1>Vista Previa de la Receta</h1>
+    <p><strong>PVP:</strong> {{ pvp }}</p>
+    <p><strong>Cargo al Afiliado:</strong> {{ cargo_afiliado }}</p>
+    <p><strong>Cargo a la Obra Social:</strong> {{ cargo_obra_social }}</p>
+    <p><strong>Observaciones:</strong> {{ observaciones }}</p>
+    <p><strong>Nombre Genérico:</strong> {{ nombre_generico }}</p>
+    <p><strong>Nombre Comercial:</strong> {{ nombre_comercial }}</p>
+    <p><strong>Presentación:</strong> {{ presentacion }}</p>
+    <p><strong>Cantidad de Envases:</strong> {{ cantidad_envases }}</p>
+
+    <form method="POST" action="{{ url_for('confirmar_entrega') }}">
+        <input type="hidden" name="pvp" value="{{ pvp }}">
+        <input type="hidden" name="cargo_afiliado" value="{{ cargo_afiliado }}">
+        <input type="hidden" name="cargo_obra_social" value="{{ cargo_obra_social }}">
+        <input type="hidden" name="observaciones" value="{{ observaciones }}">
+        <input type="hidden" name="nombre_generico" value="{{ nombre_generico }}">
+        <input type="hidden" name="nombre_comercial" value="{{ nombre_comercial }}">
+        <input type="hidden" name="presentacion" value="{{ presentacion }}">
+        <input type="hidden" name="cantidad_envases" value="{{ cantidad_envases }}">
+
+        <button type="submit">Confirmar Entrega</button>
+    </form>
+
+    <a href="{{ url_for('home.medico_dashboard') }}">Cancelar</a>
+</body>
+</html>

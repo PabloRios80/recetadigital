@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Recetas</title>
+</head>
+<body>
+    <h1>Lista de Recetas</h1>
+    <ul>
+        {% for recipe in recipes %}
+        <li>
+            <strong>Nombre y Apellido:</strong> {{ recipe['nombre_apellido'] }} <br>
+            <strong>DNI:</strong> {{ recipe['dni'] }} <br>
+            <strong>Justificación Clínica:</strong> {{ recipe['justificacion_clinica'] }} <br>
+            <strong>Droga:</strong> {{ recipe['nombre_generico'] }} ({{ recipe['nombre_comercial'] }}) <br>
+            <strong>Presentación:</strong> {{ recipe['presentacion'] }} <br>
+        </li>
+        <br>
+        {% endfor %}
+    </ul>
+</body>
+</html>
